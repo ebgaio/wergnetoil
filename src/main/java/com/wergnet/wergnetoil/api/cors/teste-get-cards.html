@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<!--meta http-equiv="content-type" content="text/html; charset=utf-8" /-->
+
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+<!-- python -m http.server 8000 -->
+<button onclick="get()">Get cards</button>
+
+<script>
+function printResponse() {
+	console.log(this.responseText);
+}
+
+function get() {
+	var req = new XMLHttpRequest();
+	req.addEventListener("load", printResponse);
+	req.open("GET", "http://localhost:8080/cards");
+	//req.setRequestHeader('HEADER1', 'VALUE');
+
+	req.send();
+}
+</script>
+
+</body>
+</html>
