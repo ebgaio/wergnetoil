@@ -46,7 +46,7 @@ public class CustomerResource {
 	@Autowired
 	private CustomerService customerService;
 	
-	// List all Customers | localhost:8080/customers
+	// List all Customers | localhost:8080/customers  
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_SEARCH_CUSTOMER') and #oauth2.hasScope('read')")
 	public List<Customer> listAll() {
