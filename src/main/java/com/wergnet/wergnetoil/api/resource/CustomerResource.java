@@ -1,6 +1,5 @@
 package com.wergnet.wergnetoil.api.resource;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +28,6 @@ import com.wergnet.wergnetoil.api.model.Card;
 import com.wergnet.wergnetoil.api.model.Customer;
 import com.wergnet.wergnetoil.api.repository.CardRepository;
 import com.wergnet.wergnetoil.api.repository.CustomerRepository;
-import com.wergnet.wergnetoil.api.service.CardNumberGenerator;
 import com.wergnet.wergnetoil.api.service.CustomerService;
 
 @RestController
@@ -60,8 +60,14 @@ public class CustomerResource {
 	public ResponseEntity<Customer> getByCode(@PathVariable Long code) {
 		
 		Optional<Customer> customer = this.customerRepository.findById(code);
-		
 		return customer.isPresent() ? ResponseEntity.ok(customer.get()) : ResponseEntity.notFound().build();
+		
+//        final HttpHeaders httpHeaders= new HttpHeaders();
+//        httpHeaders.setContentType(MediaType.APPLICATION_XML);
+//
+//        Optional<Customer> customer = this.customerRepository.findById(code);
+//
+//        return customer.isPresent() ? new ResponseEntity<Customer>(customer.get(), httpHeaders, HttpStatus.OK) : ResponseEntity.notFound().build();
 	}
 
 	// Create a new Customer | localhost:8080/customers
@@ -101,6 +107,7 @@ public class CustomerResource {
 	public ResponseEntity<Card> createNewCardToCustomer(@RequestBody Customer codeCustomer, HttpServletResponse response) {
 		
 		Card card = customerService.createNewCardToCustomer(codeCustomer);
+		publisher.publishEvent(new ResourceCreatedEvent(this, response, card.getId()));
 				
 		return ResponseEntity.status(HttpStatus.CREATED).body(card);
 	}
