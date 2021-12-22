@@ -22,6 +22,6 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-	return NoOpPasswordEncoder.getInstance();
+    	return NoOpPasswordEncoder.getInstance();
     }
 }
