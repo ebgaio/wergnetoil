@@ -1,5 +1,5 @@
 CREATE TABLE CUSTOMER (
-	id_customer BIGINT PRIMARY KEY AUTO_INCREMENT,
+	id_customer BIGINT AUTO_INCREMENT,
 	name_customer VARCHAR(30) NOT NULL,
 	last_name VARCHAR(30) NOT NULL,
 	active BOOLEAN NOT NULL,
@@ -10,7 +10,8 @@ CREATE TABLE CUSTOMER (
     county VARCHAR(30),
     city VARCHAR(30),
     eir_code VARCHAR(30),
-    country VARCHAR(30)
+    country VARCHAR(30),
+    PRIMARY KEY (id_customer)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 INSERT INTO CUSTOMER (name_customer, last_name, active, email, phone, street1, street2, county, city, eir_code, country) VALUES ('Evandro', 'Gaio', true, 'evandro@gmail.com', '3583125066', "5 OConnel", "Centre", "Dublin", "Dublin", "D6W", "Ireland");

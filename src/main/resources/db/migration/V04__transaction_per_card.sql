@@ -1,5 +1,5 @@
 CREATE TABLE TRANSACTION (
-    id_transaction BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_transaction BIGINT AUTO_INCREMENT,
     description VARCHAR(50) NOT NULL,
     value_Transaction DECIMAL(10.2) NOT NULL,
    	date_Credit DATE,
@@ -15,7 +15,8 @@ CREATE TABLE TRANSACTION (
     CONSTRAINT bank_transaction_fk FOREIGN KEY (bank_id)
     REFERENCES bank (id_bank),
     CONSTRAINT card_transaction_fk FOREIGN KEY (card_id)
-    REFERENCES card (id_card)
+    REFERENCES card (id_card),
+    PRIMARY KEY (id_transaction)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 INSERT INTO TRANSACTION (description, value_Transaction, date_Credit, date_Debit, customer_id, bank_id, card_id) VALUES("Today is a beautiful day.", 16234.0, null, '2017-11-21', 1, 1, 1);

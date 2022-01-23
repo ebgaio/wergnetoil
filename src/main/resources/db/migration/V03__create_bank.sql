@@ -1,8 +1,9 @@
 CREATE TABLE BANK (
-	id_bank BIGINT PRIMARY KEY AUTO_INCREMENT,
+	id_bank BIGINT AUTO_INCREMENT,
 	name VARCHAR(30) NOT NULL,
     number BIGINT NOT NULL,
-    active BOOLEAN NOT NULL
+    active BOOLEAN NOT NULL,
+    PRIMARY KEY (id_bank)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 #Bank with id_bank = 1, name = "Default Bank", number = 0 and active = true, is used when value is unset. 

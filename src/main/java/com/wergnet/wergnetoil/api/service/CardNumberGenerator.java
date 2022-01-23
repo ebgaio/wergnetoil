@@ -21,28 +21,28 @@ public class CardNumberGenerator {
 
 		Integer randomNumber = ThreadLocalRandom.current().nextInt(7000, 7999 + 1);
 
-		var ccNumber = randomNumber.toString();
+		String ccNumber = randomNumber.toString();
 		
-		var cardSize = 16;
+		int cardSize = 16;
 
 		while (ccNumber.length() < (cardSize - 1)) {
 			ccNumber += Double.valueOf((Math.floor(Math.random() * 10))).intValue();
 		}
 
-		var reverseCcNumberString = ccNumber;
+		String reverseCcNumberString = ccNumber;
 
 		List<Integer> reverseCcNumberList = new Vector<Integer>();
 		for (int i = 0; i < reverseCcNumberString.length(); i++) {
 			reverseCcNumberList.add(Integer.valueOf((String.valueOf(reverseCcNumberString.charAt(i)))));
 		}
 
-		var sum = 0;
-		var pos = 0;
+		int sum = 0;
+		int pos = 0;
 
 		Integer[] reverseCcNumber = reverseCcNumberList.toArray(new Integer[reverseCcNumberList.size()]);
 		while (pos < cardSize - 1) {
 
-			var odd = reverseCcNumber[pos] * 2;
+			int odd = reverseCcNumber[pos] * 2;
 			if (odd > 9) {
 				odd -= 9;
 			}
@@ -55,7 +55,7 @@ public class CardNumberGenerator {
 			pos += 2;
 		}
 
-		var checkdigit = Double.valueOf((((Math.floor(sum / 10) + 1) * 10 - sum) % 10)).intValue();
+		int checkdigit = Double.valueOf((((Math.floor(sum / 10) + 1) * 10 - sum) % 10)).intValue();
 		ccNumber += checkdigit;
 
 		return ccNumber;
