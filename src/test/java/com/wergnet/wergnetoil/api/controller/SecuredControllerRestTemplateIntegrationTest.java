@@ -12,6 +12,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+// Used when setup to access in BacicAuth authentication
 //@RunWith(SpringRunner.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -23,7 +24,7 @@ public class SecuredControllerRestTemplateIntegrationTest {
     // ... other methods
  
     @Test
-    public void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
+    public void givenAuthRequestOnPrivateService_shouldSucceedWith200() {
         ResponseEntity<String> result = template.withBasicAuth("admin@wergnetoil.com", "admin")
           .getForEntity("/cards/1", String.class);
         assertEquals(HttpStatus.OK, result.getStatusCode());
