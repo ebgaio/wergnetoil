@@ -1,7 +1,6 @@
 package com.wergnet.wergnetoil.api.event;
 
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.context.ApplicationEvent;
 
 public class ResourceCreatedEvent extends ApplicationEvent {

@@ -1,7 +1,7 @@
 package com.wergnet.wergnetoil.api.cors;
 
+import com.wergnet.wergnetoil.api.config.property.WergnetOilApiProperty;
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -9,21 +9,18 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.wergnet.wergnetoil.api.config.property.WergnetOilApiProperty;
-
 @Component
+@AllArgsConstructor
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter{
 
 //	private String originPermitida = "http://localhost:8000";
-	@Autowired
-	private WergnetOilApiProperty wergnetOilApiProperty;
+	private final WergnetOilApiProperty wergnetOilApiProperty;
 	
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)

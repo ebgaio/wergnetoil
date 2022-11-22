@@ -4,17 +4,28 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.standaloneSetup;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.wergnet.wergnetoil.api.bank.repository.BankRepository;
+import com.wergnet.wergnetoil.api.bank.service.BankService;
+import com.wergnet.wergnetoil.api.card.controller.CardController;
+import com.wergnet.wergnetoil.api.card.model.Card;
+import com.wergnet.wergnetoil.api.card.repository.CardRepository;
+import com.wergnet.wergnetoil.api.card.service.CardService;
+import com.wergnet.wergnetoil.api.customer.model.Customer;
+import com.wergnet.wergnetoil.api.customer.repository.CustomerRepository;
+import com.wergnet.wergnetoil.api.customer.service.CustomerService;
+import com.wergnet.wergnetoil.api.transaction.repository.TransactionRepository;
+import com.wergnet.wergnetoil.api.util.CardNumberGenerator;
+import com.wergnet.wergnetoil.api.transaction.service.TransactionService;
+import io.restassured.http.ContentType;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,28 +38,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import com.wergnet.wergnetoil.api.model.Card;
-import com.wergnet.wergnetoil.api.model.Customer;
-import com.wergnet.wergnetoil.api.repository.BankRepository;
-import com.wergnet.wergnetoil.api.repository.CardRepository;
-import com.wergnet.wergnetoil.api.repository.CustomerRepository;
-import com.wergnet.wergnetoil.api.repository.TransactionRepository;
-import com.wergnet.wergnetoil.api.resource.CardResource;
-import com.wergnet.wergnetoil.api.service.BankService;
-import com.wergnet.wergnetoil.api.service.CardNumberGenerator;
-import com.wergnet.wergnetoil.api.service.CardService;
-import com.wergnet.wergnetoil.api.service.CustomerService;
-import com.wergnet.wergnetoil.api.service.TransactionService;
-
-import io.restassured.http.ContentType;
-
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
+@AllArgsConstructor
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CardControllerTest2 {
 
@@ -71,7 +67,7 @@ public class CardControllerTest2 {
 	private CustomerService customerService;
 	
 	@MockBean
-	private CardResource cardResource;
+	private CardController cardResource;
 
 	@MockBean
 	private CardRepository cardRepository;
@@ -79,8 +75,7 @@ public class CardControllerTest2 {
 	@MockBean
 	private CardService cardService;
 	
-	@Autowired
-	private TestRestTemplate template;
+	private final TestRestTemplate template;
 
 	@BeforeEach
 	public void setup() {

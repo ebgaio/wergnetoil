@@ -1,11 +1,9 @@
 package com.wergnet.wergnetoil.api.security;
 
+import com.wergnet.wergnetoil.api.usercard.model.UserCard;
 import java.util.Collection;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-
-import com.wergnet.wergnetoil.api.model.UserCard;
 
 public class UserSystem extends User {
 

@@ -2,6 +2,7 @@ package com.wergnet.wergnetoil.api.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,10 +17,10 @@ import org.springframework.http.ResponseEntity;
 //@RunWith(SpringRunner.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AllArgsConstructor
 public class SecuredControllerRestTemplateIntegrationTest {
  
-    @Autowired
-    private TestRestTemplate template;
+    private final TestRestTemplate template;
  
     // ... other methods
  

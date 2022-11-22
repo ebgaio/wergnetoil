@@ -5,8 +5,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.wergnet.wergnetoil.api.customer.model.Customer;
 import java.math.BigDecimal;
 
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,21 +23,19 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wergnet.wergnetoil.api.model.Card;
-import com.wergnet.wergnetoil.api.model.Customer;
-import com.wergnet.wergnetoil.api.service.CardNumberGenerator;
-import com.wergnet.wergnetoil.api.service.CardService;
+import com.wergnet.wergnetoil.api.card.model.Card;
+import com.wergnet.wergnetoil.api.util.CardNumberGenerator;
+import com.wergnet.wergnetoil.api.card.service.CardService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
+@AllArgsConstructor
 public class CardControllerTest4 {
 	
-	@Autowired
-	MockMvc mockMvc;
+	private final MockMvc mockMvc;
 
-	@Autowired
-	private ObjectMapper objectMapper;
+	private final ObjectMapper objectMapper;
 	
 	@MockBean
 	private CardService cardService;

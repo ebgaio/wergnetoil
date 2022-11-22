@@ -2,6 +2,7 @@ package com.wergnet.wergnetoil.api.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,10 +18,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
+@AllArgsConstructor
 public class CardControllerTest3 {
 	
-	@Autowired
-	MockMvc mockMvc;
+	private final MockMvc mockMvc;
 
 	@Test
 	@DisplayName("Testing Security fail whithout autentication CardById")
