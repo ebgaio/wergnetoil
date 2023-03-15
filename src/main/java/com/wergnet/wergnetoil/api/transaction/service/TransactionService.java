@@ -31,8 +31,8 @@ public class TransactionService {
 		private final CustomerService customerService;
 		private final BankService bankService;
 		private final CardRepository cardRepository;
-    private final CustomerRepository customerRepository;
-    private final BankRepository bankRepository;
+		private final CustomerRepository customerRepository;
+		private final BankRepository bankRepository;
 	
 //	@Transactional
 	public Transaction save(@Valid Transaction transaction) {
