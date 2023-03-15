@@ -19,22 +19,20 @@ import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class TransactionService {
 	
-	private final TransactionRepository transactionRepository;
-	private final CustomerService customerService;
-	private final BankService bankService;
-	private final CardRepository cardRepository;
-	
-    @Autowired
-    private CustomerRepository customerRepository;
-    
-    @Autowired
-    private BankRepository bankRepository;
+		private final TransactionRepository transactionRepository;
+		private final CustomerService customerService;
+		private final BankService bankService;
+		private final CardRepository cardRepository;
+    private final CustomerRepository customerRepository;
+    private final BankRepository bankRepository;
 	
 //	@Transactional
 	public Transaction save(@Valid Transaction transaction) {
@@ -90,4 +88,10 @@ public class TransactionService {
     	return transaction;
 	}
 
+	public Page<Transaction> listDebitByCustomer(Long customer, Pageable pageable) {
+
+		Page<Transaction> listDebitByCustomer = transactionRepository.listDebitByCustomer(customer, pageable);
+
+		return listDebitByCustomer;
+	}
 }

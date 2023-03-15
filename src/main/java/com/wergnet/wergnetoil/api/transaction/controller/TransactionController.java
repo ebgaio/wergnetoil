@@ -63,7 +63,10 @@ public class TransactionController {
     @PreAuthorize("hasAuthority('ROLE_SEARCH_TRANSACTION') and #oauth2.hasScope('read')")
     public Page<Transaction> listDebitByCustomer(@PathVariable Long customer, Pageable pageable) {
 
-    	return transactionRepository.listDebitByCustomer(customer, pageable);
+//        return transactionRepository.listDebitByCustomer(customer, pageable);
+        Page<Transaction> listDebitByCustomer = transactionService.listDebitByCustomer(customer, pageable);
+
+        return listDebitByCustomer;
     }
 
     // Show transaction by code | localhost:8080/transactions/2
